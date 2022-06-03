@@ -1,38 +1,38 @@
-module "vpc" {
-  source		= "./modules/vpc"   		# Uncomment only this line for creating a NEW VPC #
-# source		= "./modules/vpc/existing"	# Uncomment only this line to use an EXISTING VPC #
-
+module "vpc-subnet" {
+  source		= "./modules/vpc/subnet"
   ZONE			= var.ZONE
   VPC			= var.VPC
-  SECURITYGROUP = var.SECURITYGROUP
+  SECURITY_GROUP = var.SECURITY_GROUP
   SUBNET		= var.SUBNET
 }
 
 module "db-vsi" {
   source		= "./modules/db-vsi"
-  depends_on	= [ module.vpc ]
+  depends_on	= [ module.vpc-subnet ]
   ZONE			= var.ZONE
   VPC			= var.VPC
-  SECURITYGROUP = var.SECURITYGROUP
+  SECURITY_GROUP = var.SECURITY_GROUP
+  RESOURCE_GROUP = var.RESOURCE_GROUP
   SUBNET		= var.SUBNET
   HOSTNAME		= var.DB-HOSTNAME
-  PROFILE		= var.PROFILE
-  IMAGE			= var.IMAGE
+  PROFILE		= var.DB-PROFILE
+  IMAGE			= var.DB-IMAGE
   SSH_KEYS		= var.SSH_KEYS
-  VOLUME_SIZES	= [ "40" , "32" , "64" , "128" ]
+  VOLUME_SIZES	= [ "40" , "32" , "64" , "128", "256" ]
   VOL_PROFILE	= "10iops-tier"
 }
 
 module "app-vsi" {
   source		= "./modules/app-vsi"
-  depends_on	= [ module.vpc ]
+  depends_on	= [ module.vpc-subnet ]
   ZONE			= var.ZONE
   VPC			= var.VPC
-  SECURITYGROUP = var.SECURITYGROUP
+  SECURITY_GROUP = var.SECURITY_GROUP
+  RESOURCE_GROUP = var.RESOURCE_GROUP
   SUBNET		= var.SUBNET
   HOSTNAME		= var.APP-HOSTNAME
-  PROFILE		= var.PROFILE
-  IMAGE			= var.IMAGE
+  PROFILE		= var.APP-PROFILE
+  IMAGE			= var.APP-IMAGE
   SSH_KEYS		= var.SSH_KEYS
   VOLUME_SIZES	= [ "40" , "128" ]
   VOL_PROFILE	= "10iops-tier"
