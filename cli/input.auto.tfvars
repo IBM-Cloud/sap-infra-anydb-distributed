@@ -10,9 +10,9 @@ SSH_KEYS		= [ "r010-57bfc315-f9e5-46bf-bf61-d87a24a9ce7a" , "r010-3fcd9fe7-d4a7-
 # SAP Database VSI variables:
 DB-HOSTNAME		= "ep12db"
 DB-PROFILE		= "bx2-4x16"
-DB-IMAGE		= "ibm-redhat-7-6-amd64-sap-applications-3"
+DB-IMAGE		= "ibm-redhat-8-6-amd64-sap-applications-2"
 
 # SAP APPs VSI variables:
 APP-HOSTNAME    = "ep12app"
 APP-PROFILE		= "bx2-4x16"
-APP-IMAGE		= "ibm-redhat-7-6-amd64-sap-applications-3"
+APP-IMAGE		= "ibm-redhat-8-6-amd64-sap-applications-2"

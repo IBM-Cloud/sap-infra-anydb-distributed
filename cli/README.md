@@ -13,7 +13,7 @@ Please note that Ansible is started by Terraform and must be available on the sa
 For the script configuration add your IBM Cloud API Key in `terraform.tfvars`.
 
 ## VSI Configuration
-The VSIs are configured with Red Hat Enterprise Linux 7.6 for SAP HANA (amd64) for DB server and Red Hat Enterprise Linux 7.x for SAP Applications (amd64) for APP server and they have: at least two SSH keys configured to access as root user and the following storage volumes created for DB and SAP APP VSI:
+The VSIs are configured with Red Hat Enterprise Linux 8.6 for SAP Applications (amd64) or SUSE Linux Enterprise Server 15 SP 4 for SAP Applications for DB server and Red Hat Enterprise Linux 8.4 for SAP Applications (amd64) or SUSE Linux Enterprise Server 15 SP 3 for SAP Applications for APP server and they have: at least two SSH keys configured to access as root user and the following storage volumes created for DB and SAP APP VSI:
 
 DB VSI Disks:
 - 1x 40 GB disk with 10 IOPS / GB - SWAP
@@ -42,12 +42,12 @@ SSH_KEYS      = [ "r010-57bfc315-f9e5-46bf-bf61-d87a24a9ce7a" , "r010-3fcd9fe7-d
 # SAP Database VSI variables:
 DB-HOSTNAME		= "ep12db"
 DB-PROFILE		= "bx2-4x16"
-DB-IMAGE		= "ibm-redhat-7-6-amd64-sap-applications-3" # For any manual change in the terraform code, you have to make sure that you use a certified image based on the SAP NOTE: 2927211.
+DB-IMAGE		= "ibm-redhat-8-6-amd64-sap-applications-2" # For any manual change in the terraform code, you have to make sure that you use a certified image based on the SAP NOTE: 2927211.
 
 # SAP APPs VSI variables:
 APP-HOSTNAME	= "ep12app"
 APP-PROFILE		= "bx2-4x16"
-APP-IMAGE		= "ibm-redhat-7-6-amd64-sap-applications-3" # For any manual change in the terraform code, you have to make sure that you use a certified image based on the SAP NOTE: 2927211.
+APP-IMAGE		= "ibm-redhat-8-6-amd64-sap-applications-2" # For any manual change in the terraform code, you have to make sure that you use a certified image based on the SAP NOTE: 2927211.
 ......
 ```
 
@@ -122,3 +122,6 @@ For destroy:
 ```shell
 terraform destroy
 ```
+The Terraform version used for deployment should be >= 1.3.6. 
+Note: The deployment was tested with Terraform 1.3.6
+

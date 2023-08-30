@@ -58,7 +58,7 @@ variable "DB-PROFILE" {
 variable "DB-IMAGE" {
 	type		= string
 	description = "DB VSI OS Image"
-	default		= "ibm-redhat-7-6-amd64-sap-applications-1"
+	default		= "ibm-redhat-8-6-amd64-sap-applications-2"
 }
 
 variable "APP-PROFILE" {
@@ -70,7 +70,7 @@ variable "APP-PROFILE" {
 variable "APP-IMAGE" {
 	type		= string
 	description = "APP VSI OS Image"
-	default		= "ibm-redhat-7-6-amd64-sap-applications-1"
+	default		= "ibm-redhat-8-6-amd64-sap-applications-2"
 }
 
 variable "SSH_KEYS" {
